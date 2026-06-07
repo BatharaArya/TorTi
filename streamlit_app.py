@@ -239,9 +239,9 @@ elif branch == "4. Alkalimetri (NaOH)":
         col1, col2 = st.columns(2)
         with col1:
             vol_ta = st.number_input("Volume TA NaOH (mL)", min_value=0.0, value=15.0, step=0.1)
-            weight_asam = st.number_input("Berat as.oksalat (mg)", min_value=0.0, value=63,00, step=0.1, format="%.2f")
+            weight_asam = st.number_input("Berat as.oksalat (mg)", min_value=0.0, value=63.00, step=0.1, format="%.2f")
         with col2:
-            be_asam = 63,00
+            be_asam = 63.00
             st.metric("BE Asam Oksalat", f"{be_asam} g/eq")
             
         submitted = st.form_submit_button("Hitung Normalitas NaOH", type="primary")
