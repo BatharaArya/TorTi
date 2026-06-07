@@ -188,7 +188,7 @@ elif branch == "3. Redoks (Permanganat/Iodometri)":
             
             else:
                 vol_ta = st.number_input("Volume TA (mL)", min_value=0.0, value=15.0, step=0.1)
-                norm_kmno4 = st.number_input("Normalitas KMnO4 (N)", min_value=0.0, value=0.1000, step=0.01)
+                norm_kmno4 = st.number_input("Normalitas KMnO4 (N)", min_value=0.0, value=0.10, step=0.01,, format="%.4f")
                 vol_fe = st.number_input("Volume Sampel Fe (mL)", min_value=0.0, value=25.00, step=1.0)
                 
                 submitted = st.form_submit_button("Hitung Kadar Fe", type="primary")
@@ -218,7 +218,7 @@ elif branch == "3. Redoks (Permanganat/Iodometri)":
             
             else:
                 vol_ta = st.number_input("Volume TA Tio (mL)", min_value=0.0, value=5.0, step=0.1)
-                norm_tio = st.number_input("Normalitas Tio (N)", min_value=0.0, value=0.1000, step=0.01)
+                norm_tio = st.number_input("Normalitas Tio (N)", min_value=0.0, value=0.1000, step=0.01, format="%.4f")
                 vol_sampel = st.number_input("Volume Sampel Air (mL)", min_value=0.0, value=100.0, step=1.0)
 
                 submitted = st.form_submit_button("Hitung DO", type="primary")
@@ -287,7 +287,7 @@ elif branch == "5. Asidimetri (HCl/Warder)":
                 ta_1 = st.number_input("TA 1 (Fenolftalein) mL", min_value=0.0, value=10.0, step=0.1)
                 ta_2 = st.number_input("TA 2 (Metil Jingga) mL", min_value=0.0, value=25.0, step=0.1)
             with c2:
-                norm_hcl = st.number_input("Normalitas HCl (N)", min_value=0.0, value=0.1000, step=0.0001)
+                norm_hcl = st.number_input("Normalitas HCl (N)", min_value=0.0, value=0.1000, step=0.1, format="%.4f")
                 vol_sampel = st.number_input("Volume Sampel (mL)", min_value=0.0, value=10.0, step=1.0)
             
             submitted = st.form_submit_button("Hitung Kadar Campuran", type="primary")
