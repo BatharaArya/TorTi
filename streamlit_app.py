@@ -152,7 +152,7 @@ elif branch == "2. Kompleksometri (Kesadahan/EDTA)":
             submitted = st.form_submit_button("Hitung Normalitas EDTA", type="primary")
 
             if submitted:
-                if validate_inputs(vol_ta, weight_caco3) and vol_aliquot > 0:
+                if validate_inputs(vol_ta, weight_caco3):
                     # Calculation: Molarity = (Weight/100.08) * (Vol_Aliq/Total_Vol) / TA
                     mol_caco3 = (weight_caco3 / bm_caco3) # moles in total solution
                     conc_edta = mol_caco3  / (fp* vol_ta)
