@@ -188,7 +188,7 @@ elif branch == "3. Redoks (Permanganat/Iodometri)":
             
             else:
                 vol_ta = st.number_input("Volume TA (mL)", min_value=0.0, value=15.0, step=0.1)
-                norm_kmno4 = st.number_input("Normalitas KMnO4 (N)", min_value=0.0, value=0.10, step=0.01,, format="%.4f")
+                norm_kmno4 = st.number_input("Normalitas KMnO4 (N)", min_value=0.0, value=0.10, step=0.01, format="%.4f")
                 vol_fe = st.number_input("Volume Sampel Fe (mL)", min_value=0.0, value=25.00, step=1.0)
                 
                 submitted = st.form_submit_button("Hitung Kadar Fe", type="primary")
