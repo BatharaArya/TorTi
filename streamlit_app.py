@@ -264,17 +264,17 @@ elif branch == "5. Asidimetri (HCl/Warder)":
 
     with st.form("form_asidimetri"):
         if asid_option == "Standarisasi HCl":
-            st.subheader("Standarisasi HCl dengan Na2CO3")
+            st.subheader("Standarisasi HCl dengan Asam Boraks")
             
             vol_ta = st.number_input("Volume TA HCl (mL)", min_value=0.0, value=20.0, step=0.1)
-            weight_nac = st.number_input("Berat Na2CO3 (mg)", min_value=0.0, value=106.0, step=1.0)
-            be_nac = 53.00 # Na2CO3 = 106/2 = 53
+            weight_brx = st.number_input("Berat Na2CO3 (mg)", min_value=0.0, value=106.0, step=1.0)
+            be_brx = 190.7 # Na2CO3 = 381.4/2 = 190.7
             
             submitted = st.form_submit_button("Hitung Normalitas HCl", type="primary")
             
             if submitted:
                 if validate_inputs(vol_ta, weight_nac):
-                    norm_hcl = weight_nac / (vol_ta * be_nac)
+                    norm_hcl = weight_brx / (vol_ta * be_brx)
                     st.success("Perhitungan Selesai")
                     st.metric("Normalitas HCl", f"{norm_hcl:.5f}", delta="N")
 
