@@ -300,7 +300,7 @@ elif branch == "5. Asidimetri (HCl/Warder)":
                     vol_hcl_nac = 2 * (ta_2 - ta_1)
                     
                     # Check for negative volumes (indicates pure NaOH or pure Na2CO3)
-                        if vol_hcl_naoh <= 0 and vol_hcl_nac <= 0:
+                        if vol_hcl_naoh <= 0:
                         st.error("Volume titik akhir tidak valid untuk metode Warder. Periksa kembali TA 1 dan TA 2.")
                     else:
                         eq_naoh = max(vol_hcl_naoh, 0) * norm_hcl
