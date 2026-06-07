@@ -101,8 +101,7 @@ if branch == "1. Argentometri (Klorida)":
 
     if submitted:
         if validate_inputs(vol_ta, vol_sample):
-            weight_in_grams = vol_sample / 1000.0
-            kadar_cl = ((vol_ta * conc_agno3 * 35.45 / weight_in_grams) * 100) / 10000
+            kadar_cl = ((vol_ta * conc_agno3 * 35.45 / vol_sample) * 100 / 1000) / 10000
             
             st.success("Perhitungan Selesai")
             res_col1, res_col2 = st.columns(2)
