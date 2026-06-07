@@ -300,7 +300,6 @@ elif branch == "5. Asidimetri (HCl/Warder)":
                     vol_hcl_nac = 2 * (ta_2 - ta_1)
                     
                     # Check for negative volumes (indicates pure NaOH or pure Na2CO3)
-                     if vol_hcl_naoh < 0:
                         st.error("❌ Error: TA 2 (MO) tidak boleh lebih kecil dari TA 1 (PP).")
                     else:
                         # Perhitungan volume HCl teoretis untuk masing-masing komponen
