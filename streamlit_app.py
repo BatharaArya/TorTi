@@ -100,8 +100,8 @@ if branch == "1. Argentometri (Klorida)":
         submitted = st.form_submit_button("Hitung Kadar Klor", type="primary")
 
     if submitted:
-        if validate_inputs(vol_ta, weight_sample):
-            weight_in_grams = volume_sample / 1000.0
+        if validate_inputs(vol_ta, vol_sample):
+            weight_in_grams = vol_sample / 1000.0
             kadar_cl = (vol_ta * conc_agno3 * 35.45 / weight_in_grams) * 100
             
             st.success("Perhitungan Selesai")
