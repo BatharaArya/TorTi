@@ -114,7 +114,7 @@ if branch == "1. Argentometri (Klorida)":
 # -----------------------------------------------------------------------------
 elif branch == "2. Kompleksometri (Kesadahan/EDTA)":
     st.header("⚗️ Kompleksometri")
-    st.markdown("Metode комплексometric untuk penetapan kesadahan air atau standarisasi EDTA.")
+    st.markdown("Metode kompleksometri untuk penetapan kesadahan air atau standarisasi EDTA.")
 
     task_option = st.radio("Pilih Tugas:", ["Penetapan Kesadahan Total (CaCO3)", "Standarisasi Larutan EDTA"], horizontal=True)
 
@@ -144,16 +144,18 @@ elif branch == "2. Kompleksometri (Kesadahan/EDTA)":
                 vol_ta = st.number_input("Volume TA EDTA (mL)", min_value=0.0, value=12.5, step=0.1)
                 weight_caco3 = st.number_input("Berat CaCO3 Induk (mg)", min_value=0.0, value=100.0, step=1.0)
             with c2:
-                vol_aliquot = st.number_input("Volume Aliquot (mL)", min_value=0.0, value=10.0, step=1.0)
-                total_vol = st.number_input("Volume Total Larutan Induk (mL)", min_value=0.0, value=100.0, step=1.0)
+               fp = st.number_input("Faktor Pengali", min_value=0.0, value=4.00, step=0.1)
+               bm_caco3 = 100
+               st.metric("Bm CaCO3", f"{bm_caco3} g/mol")
+            
             
             submitted = st.form_submit_button("Hitung Normalitas EDTA", type="primary")
 
             if submitted:
                 if validate_inputs(vol_ta, weight_caco3) and vol_aliquot > 0:
                     # Calculation: Molarity = (Weight/100.08) * (Vol_Aliq/Total_Vol) / TA
-                    mol_caco3 = (weight_caco3 / 100.08) # moles in total solution
-                    conc_edta = mol_caco3 * (vol_aliquot / total_vol) / vol_ta
+                    mol_caco3 = (weight_caco3 / bm_caco3) # moles in total solution
+                    conc_edta = mol_caco3  / (fp* vol_ta)
                     
                     st.success("Perhitungan Selesai")
                     st.metric("Konsentrasi EDTA", f"{conc_edta:.5f}", delta="M")
