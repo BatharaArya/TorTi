@@ -268,7 +268,7 @@ elif branch == "5. Asidimetri (HCl/Warder)":
             
             vol_ta = st.number_input("Volume TA HCl (mL)", min_value=0.0, value=20.0, step=0.1)
             weight_brx = st.number_input("Berat Boraks (mg)", min_value=0.0, value=106.0, step=1.0)
-            be_brx = 190.7 # Na2CO3 = 381.4/2 = 190.7
+            be_brx = 190.6 # Na2CO3 = 381.2/2 = 190.6
             fp = st.number_input("faktor pengali", min_value=0.0, value=4.0, step=0.1)
             submitted = st.form_submit_button("Hitung Normalitas HCl", type="primary")
             
