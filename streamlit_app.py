@@ -287,7 +287,7 @@ elif branch == "5. Asidimetri (HCl/Warder)":
                 ta_1 = st.number_input("TA 1 (Fenolftalein) mL", min_value=0.0, value=10.0, step=0.1)
                 ta_2 = st.number_input("TA 2 (Metil Jingga) mL", min_value=0.0, value=25.0, step=0.1)
             with c2:
-                norm_hcl = st.number_input("Normalitas HCl (N)", min_value=0.0, value=0.1000, step=0.0100)
+                norm_hcl = st.number_input("Normalitas HCl (N)", min_value=0.0, value=0.1000, step=0.0001)
                 vol_sampel = st.number_input("Volume Sampel (mL)", min_value=0.0, value=10.0, step=1.0)
             
             submitted = st.form_submit_button("Hitung Kadar Campuran", type="primary")
