@@ -239,16 +239,16 @@ elif branch == "4. Alkalimetri (NaOH)":
         col1, col2 = st.columns(2)
         with col1:
             vol_ta = st.number_input("Volume TA NaOH (mL)", min_value=0.0, value=15.0, step=0.1)
-            weight_khp = st.number_input("Berat as.oksalat (mg)", min_value=0.0, value=63,00, step=0.1, format="%.2f")
+            weight_asam = st.number_input("Berat as.oksalat (mg)", min_value=0.0, value=63,00, step=0.1, format="%.2f")
         with col2:
-            be_khp = 63,00
-            st.metric("BE KHP", f"{be_khp} g/eq")
+            be_asam = 63,00
+            st.metric("BE Asam Oksalat", f"{be_asam} g/eq")
             
         submitted = st.form_submit_button("Hitung Normalitas NaOH", type="primary")
 
         if submitted:
-            if validate_inputs(vol_ta, weight_khp):
-                norm_naoh = weight_khp / (vol_ta * be_khp)
+            if validate_inputs(vol_ta, weight_asam):
+                norm_naoh = weight_asam / (vol_ta * be_asam)
                 st.success("Perhitungan Selesai")
                 st.metric("Normalitas NaOH", f"{norm_naoh:.5f}", delta="N")
 
