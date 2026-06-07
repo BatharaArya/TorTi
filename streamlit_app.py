@@ -177,25 +177,25 @@ elif branch == "3. Redoks (Permanganat/Iodometri)":
                 vol_ta = st.number_input("Volume TA (mL)", min_value=0.0, value=10.0, step=0.1)
                 weight_ox = st.number_input("Berat Asam Oksalat (mg)", min_value=0.0, value=100.0, step=1.0)
                 be_ox = 63.03 # Default
+                fp = st.number_input("Faktor Pengali", min_value=0.0, value=4.00, step=0.1)
                 
                 submitted = st.form_submit_button("Hitung Normalitas KMnO4", type="primary")
                 if submitted:
                     if validate_inputs(vol_ta, weight_ox):
-                        norm = weight_ox / (vol_ta * be_ox)
+                        norm = weight_ox / (fp * vol_ta * be_ox)
                         st.success("Perhitungan Selesai")
                         st.metric("Normalitas KMnO4", f"{norm:.5f}", delta="N")
             
             else:
                 vol_ta = st.number_input("Volume TA (mL)", min_value=0.0, value=15.0, step=0.1)
-                norm_kmno4 = st.number_input("Normalitas KMnO4 (N)", min_value=0.0, value=0.1, step=0.01)
-                weight_fe = st.number_input("Berat Sampel Fe (mg)", min_value=0.0, value=250.0, step=1.0)
+                norm_kmno4 = st.number_input("Normalitas KMnO4 (N)", min_value=0.0, value=0.1000, step=0.01)
+                vol_fe = st.number_input("Volume Sampel Fe (mL)", min_value=0.0, value=25.00, step=1.0)
                 
                 submitted = st.form_submit_button("Hitung Kadar Fe", type="primary")
                 if submitted:
-                    if validate_inputs(vol_ta, weight_fe):
-                        # % Fe = (V * N * 55.85 / W) * 100
-                        weight_fe_g = weight_fe / 1000
-                        pct_fe = (vol_ta * norm_kmno4 * 55.85 / weight_fe_g) * 100
+                    if validate_inputs(vol_ta, vol_fe):
+                        # % Fe = (V * N * 55.845 / W) * 100
+                        pct_fe = (vol_ta * norm_kmno4 * 55.845 / vol_fe) * 10
                         st.success("Perhitungan Selesai")
                         st.metric("Kadar Fe", f"{pct_fe:.4f}", delta="%")
 
@@ -206,19 +206,19 @@ elif branch == "3. Redoks (Permanganat/Iodometri)":
         with st.form("form_iodometri"):
             if "Standarisasi" in iod_option:
                 vol_ta = st.number_input("Volume TA Tio (mL)", min_value=0.0, value=10.0, step=0.1)
-                vol_k2cr2o7 = st.number_input("Volume K2Cr2O7 (mL)", min_value=0.0, value=10.0, step=0.1)
-                norm_k2cr2o7 = st.number_input("Normalitas K2Cr2O7 (N)", min_value=0.0, value=0.1, step=0.01)
+                mg_k2cr2o7 = st.number_input("Berat K2Cr2O7 (mg)", min_value=0.0, value=100.0, step=0.1)
+                fp = st.number_input("Faktor Pengali", min_value=0.0, value=4.00, step=0.1)
 
                 submitted = st.form_submit_button("Hitung Normalitas Tio", type="primary")
                 if submitted:
-                    if validate_inputs(vol_ta, second_vol=vol_k2cr2o7):
-                        norm_tio = (vol_k2cr2o7 * norm_k2cr2o7) / vol_ta
+                    if validate_inputs(vol_ta,mg_k2cr2o7):
+                        norm_tio = mg_k2cr2o7 / (fp * vol_ta * 49)
                         st.success("Perhitungan Selesai")
                         st.metric("Normalitas Tio", f"{norm_tio:.5f}", delta="N")
             
             else:
                 vol_ta = st.number_input("Volume TA Tio (mL)", min_value=0.0, value=5.0, step=0.1)
-                norm_tio = st.number_input("Normalitas Tio (N)", min_value=0.0, value=0.1, step=0.01)
+                norm_tio = st.number_input("Normalitas Tio (N)", min_value=0.0, value=0.1000, step=0.01)
                 vol_sampel = st.number_input("Volume Sampel Air (mL)", min_value=0.0, value=100.0, step=1.0)
 
                 submitted = st.form_submit_button("Hitung DO", type="primary")
@@ -287,7 +287,7 @@ elif branch == "5. Asidimetri (HCl/Warder)":
                 ta_1 = st.number_input("TA 1 (Fenolftalein) mL", min_value=0.0, value=10.0, step=0.1)
                 ta_2 = st.number_input("TA 2 (Metil Jingga) mL", min_value=0.0, value=25.0, step=0.1)
             with c2:
-                norm_hcl = st.number_input("Normalitas HCl (N)", min_value=0.0, value=0.1, step=0.01)
+                norm_hcl = st.number_input("Normalitas HCl (N)", min_value=0.0, value=0.1000, step=0.01)
                 vol_sampel = st.number_input("Volume Sampel (mL)", min_value=0.0, value=10.0, step=1.0)
             
             submitted = st.form_submit_button("Hitung Kadar Campuran", type="primary")
