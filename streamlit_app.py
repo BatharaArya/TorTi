@@ -94,14 +94,14 @@ if branch == "1. Argentometri (Klorida)":
             conc_agno3 = st.number_input("Konsentrasi Larutan AgNO₃ (N)", min_value=0.0, value=0.1, step=0.01, format="%.4f")
         
         with col2:
-            weight_sample = st.number_input("Berat Sampel Klorida (mg)", min_value=0.0, value=500.0, step=1.0, format="%.1f")
-            st.info("Masukkan berat sampel dalam miligram (mg).")
+            vol_sample = st.number_input("volume Sampel Klorida (mL)", min_value=0.0, value=10.0, step=1.0, format="%.1f")
+            st.info("Masukkan volume sampel dalam mililiter (mL).")
             
         submitted = st.form_submit_button("Hitung Kadar Klor", type="primary")
 
     if submitted:
         if validate_inputs(vol_ta, weight_sample):
-            weight_in_grams = weight_sample / 1000.0
+            weight_in_grams = volume_sample / 1000.0
             kadar_cl = (vol_ta * conc_agno3 * 35.45 / weight_in_grams) * 100
             
             st.success("Perhitungan Selesai")
