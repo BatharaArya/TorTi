@@ -4,7 +4,7 @@ import streamlit as st
 # CONFIGURATION & STYLING
 # -----------------------------------------------------------------------------
 st.set_page_config(
-    page_title="Kalkulator Titrasi Kimia Analitik",
+    page_title="Kalkulator Titrasi TorTi",
     page_icon="⚗️",
     layout="wide",
     initial_sidebar_state="expanded"
