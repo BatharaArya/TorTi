@@ -102,12 +102,12 @@ if branch == "1. Argentometri (Klorida)":
     if submitted:
         if validate_inputs(vol_ta, vol_sample):
             weight_in_grams = vol_sample / 1000.0
-            kadar_cl = (vol_ta * conc_agno3 * 35.45 / weight_in_grams)
+            kadar_cl = (vol_ta * conc_agno3 * 35.45 / weight_in_grams) * 100
             
             st.success("Perhitungan Selesai")
             res_col1, res_col2 = st.columns(2)
             res_col1.metric("Volume TA", f"{vol_ta} mL")
-            res_col2.metric("Kadar Klor", f"{kadar_cl:.4f}", delta="%")
+            res_col2.metric("Kadar Klor", f"{kadar_cl:.4f}", delta="mg/L")
 
 # -----------------------------------------------------------------------------
 # BRANCH 2: KOMPLEKSOMETRI
