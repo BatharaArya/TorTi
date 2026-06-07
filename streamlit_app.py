@@ -64,7 +64,7 @@ def display_result(label, value, unit):
 st.markdown("""
     <div class="main-header">
         <h1>Aplikasi Kalkulator Titrasi</h1>
-        <div class="sub-header">Praktikum Kimia Analitik</div>
+        <div class="sub-header">TorTi</div>
     </div>
 """, unsafe_allow_html=True)
 
