@@ -233,15 +233,15 @@ elif branch == "3. Redoks (Permanganat/Iodometri)":
 # -----------------------------------------------------------------------------
 elif branch == "4. Alkalimetri (NaOH)":
     st.header("⚗️ Alkalimetri: Standarisasi NaOH")
-    st.markdown("Standarisasi larutan NaOH menggunakan KHP (Kalium Hidrogen Ftalat).")
+    st.markdown("Standarisasi larutan NaOH menggunakan Asam Oksalat")
 
     with st.form("form_alkalimetri"):
         col1, col2 = st.columns(2)
         with col1:
             vol_ta = st.number_input("Volume TA NaOH (mL)", min_value=0.0, value=15.0, step=0.1)
-            weight_khp = st.number_input("Berat KHP (mg)", min_value=0.0, value=204.22, step=0.1, format="%.2f")
+            weight_khp = st.number_input("Berat as.oksalat (mg)", min_value=0.0, value=63,00, step=0.1, format="%.2f")
         with col2:
-            be_khp = 204.22
+            be_khp = 63,00
             st.metric("BE KHP", f"{be_khp} g/eq")
             
         submitted = st.form_submit_button("Hitung Normalitas NaOH", type="primary")
