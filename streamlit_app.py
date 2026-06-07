@@ -300,5 +300,55 @@ elif branch == "5. Asidimetri (HCl/Warder)":
                     vol_hcl_nac = 2 * (ta_2 - ta_1)
                     
                     # Check for negative volumes (indicates pure NaOH or pure Na2CO3)
-                    if vol_hcl_naoh < 0:
-                        st.warning("Hasil Negatif: Sampel")
+                    if submitted:
+                if validate_inputs(ta_1, second_vol=vol_sampel) and ta_2 > 0:
+                    if ta_2 < ta_1:
+                        st.error("❌ Error: TA 2 (MO) tidak boleh lebih kecil dari TA 1 (PP).")
+                    else:
+                        # Perhitungan volume HCl teoretis untuk masing-masing komponen
+                        vol_hcl_naoh = 2 * ta_1 - ta_2
+                        vol_hcl_nac = 2 * (ta_2 - ta_1)
+                        
+                        # Konstanta Berat Ekuivalen (BE)
+                        be_naoh = 40.00
+                        be_nac = 53.00  # Na2CO3 -> Mr 106 / valensi 2
+                        
+                        # ---------------------------------------------------------------------
+                        # LOGIKA EVALUASI CAMPURAN (Pencegahan Hasil Negatif)
+                        # ---------------------------------------------------------------------
+                        # Check for negative volumes (indicates pure NaOH, pure Na2CO3, or Carbonate-Bicarbonate mix)
+                        if vol_hcl_naoh < 0:
+                            st.warning("⚠️ Hasil Negatif terdeteksi pada NaOH! Sampel Anda kemungkinan besar bukan campuran NaOH + Na₂CO₃, melainkan campuran Na₂CO₃ + NaHCO₃.")
+                            # Pada kondisi ini, secara matematis kadar NaOH dianggap nol
+                            vol_hcl_naoh = 0.0
+                            kadar_naoh = 0.0
+                            
+                            # Rumus disesuaikan untuk campuran Na2CO3 + NaHCO3 jika diperlukan, 
+                            # namun demi konsistensi UI, kita nol-kan komponen NaOH
+                            kadar_nac = (ta_1 * 2 * norm_hcl * be_nac) / vol_sampel
+                            
+                        elif ta_1 == ta_2:
+                            st.info("💡 Informasi: TA 1 = TA 2. Sampel teridentifikasi sebagai NaOH murni (Kadar Na₂CO₃ = 0).")
+                            vol_hcl_naoh = ta_1
+                            vol_hcl_nac = 0.0
+                            kadar_naoh = (vol_hcl_naoh * norm_hcl * be_naoh) / vol_sampel
+                            kadar_nac = 0.0
+                            
+                        else:
+                            # Kondisi Normal: Campuran NaOH + Na2CO3
+                            kadar_naoh = (vol_hcl_naoh * norm_hcl * be_naoh) / vol_sampel
+                            kadar_nac = (vol_hcl_nac * norm_hcl * be_nac) / vol_sampel
+
+                        # ---------------------------------------------------------------------
+                        # MENAMPILKAN HASIL AKHIR
+                        # ---------------------------------------------------------------------
+                        st.success("🎉 Perhitungan Selesai")
+                        
+                        res_col1, res_col2 = st.columns(2)
+                        with res_col1:
+                            st.metric(label="Kadar NaOH", value=f"{kadar_naoh:.4f}", delta="mg/mL")
+                            st.caption(f"Vol. HCl Terpakai: {vol_hcl_naoh:.2f} mL")
+                            
+                        with res_col2:
+                            st.metric(label="Kadar Na₂CO₃", value=f"{kadar_nac:.4f}", delta="mg/mL")
+                            st.caption(f"Vol. HCl Terpakai: {vol_hcl_nac:.2f} mL")
