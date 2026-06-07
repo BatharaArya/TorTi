@@ -273,7 +273,7 @@ elif branch == "5. Asidimetri (HCl/Warder)":
             submitted = st.form_submit_button("Hitung Normalitas HCl", type="primary")
             
             if submitted:
-                if validate_inputs(vol_ta, weight_nac):
+                if validate_inputs(vol_ta, weight_brx):
                     norm_hcl = weight_brx / (vol_ta * be_brx)
                     st.success("Perhitungan Selesai")
                     st.metric("Normalitas HCl", f"{norm_hcl:.5f}", delta="N")
